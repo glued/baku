@@ -1,0 +1,11 @@
+node_modules/
+examples/
+demo/
+docs/
+webpack.config.js
+.babelrc
+.eslintrc
+.editorconfig
+.jscsrc
+
+npm-debug.log

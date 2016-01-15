@@ -1,0 +1,29 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "flow-vars"
+  ],
+  "rules": {
+    "strict": 0,
+    "flow-vars/define-flow-type": 1,
+    "no-unused-vars":[2, {"vars": "local"}],
+    "flow-vars/use-flow-type": 1,
+    "no-undef":1,
+    "quotes": [1, "single"],
+    "no-multi-spaces": 0,
+    "no-unexpected-multiline": 0,
+    "curly": 0,
+    "consistent-return": 0,
+    "no-underscore-dangle": 0,
+    "no-console":0
+  },
+  "globals":{
+    "PROD_ENV":true,
+    "WebFont":true,
+    "stats":true
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
