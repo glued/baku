@@ -1,13 +1,10 @@
 {
   "name": "baku",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.2",
   "description": "A collection of frontend ES6 components & utilities",
   "author": "Richard Worsfold",
   "license": "MIT",
-  "main": "src/index.js",
-  "files":[
-    "src"
-  ],
   "keywords": [
     "babel",
     "es6",
@@ -21,12 +18,8 @@
     "watch": "webpack --watch",
     "start": "webpack-dev-server --hot --inline"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/glued/baku.git"
-  },
-  "bugs": "https://github.com/glued/baku/issues",
   "devDependencies": {
+    "baku":"*",
     "babel-core": "^6.4.0",
     "babel-eslint": "^5.0.0-beta6",
     "babel-jscs": "^2.0.0",

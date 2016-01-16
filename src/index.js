@@ -13,7 +13,7 @@ export class Component{
   update(/*timeStamp*/){}
 }
 
-export default class App{
+export class App{
   constructor(){
     this.components = [];
   }

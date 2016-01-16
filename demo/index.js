@@ -1,5 +1,5 @@
-import App from '../src';
-import {imageLoader} from '../src/images';
+import App from 'baku';
+import {imageLoader} from 'baku/images';
 // import {transform} from '../src/css/transforms';
 class SampleApp extends App{
   constructor(){
