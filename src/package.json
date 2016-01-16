@@ -1,6 +1,6 @@
 {
   "name": "baku",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A collection of frontend ES6 components & utilities",
   "author": "Richard Worsfold",
   "license": "MIT",
@@ -13,5 +13,9 @@
     "typescript",
     "utils"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glued/baku.git"
+  },
   "bugs": "https://github.com/glued/baku/issues"
 }
