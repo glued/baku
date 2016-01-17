@@ -52,6 +52,7 @@ import {inOutBack} from 'baku/animation/ease';
 //start, end, duration, delay, ease, render callback
 
 tween(0, 300, 1000, 100, inOutBack, value => {
+  //animation value callback
   someDiv.style.transform = `translate3d(${value}px,0,0)`;
 }).then(()=>{
   console.log('animation complete');
