@@ -71,6 +71,26 @@ export class Tween{
   }
 }
 
+//STANDALONE TWEEN
+export function tween(startValue, endValue, duration, delay, ease, callback){
+  return new Promise((resolve) => {
+      let temp = new Tween(startValue, endValue, duration, delay, ease);
+
+      function render(){
+          let pos = temp.ease(Date.now());
+          callback(pos);
+          if(temp.easing === false){
+             resolve(pos);
+             return;
+          }
+
+          requestAnimationFrame(render);
+      }
+
+      render();
+    });
+}
+
 export class Lerp{
     constructor(initialValue, speed, threshold = 0.5){
         this.currentPos = initialValue;
