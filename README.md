@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 
 ```javascript
 
-import {tween} from 'baku/animation';
+import {tween, multiTween} from 'baku/animation';
 import {inOutBack} from 'baku/animation/ease';
 
 //start, end, duration, delay, ease, render callback
@@ -58,6 +58,16 @@ tween(0, 300, 1000, 100, inOutBack, value => {
   console.log('animation complete');
 });
 
+//OR MULTIPLE values
+let tweens = [
+  [300, 0, 1000, 10, inOutBack],
+  [0, 100, 1000, 100, inOutBack]
+];
+
+multiTween(tweens, values => {
+  img.style.transform = `translate3d(${values[0]}px,${values[1]}px,0)`;
+}).then(()=> console.log('done'));
+
 ```
 
 ####AUDIO
@@ -67,10 +77,10 @@ tween(0, 300, 1000, 100, inOutBack, value => {
 `baku/canvas`
 
 ```javascript
-	import {CanvasView} from 'baku/canvas';
+import {CanvasView} from 'baku/canvas';
 
-	//width, height, container, transparent
-	let stage = new CanvasView(1200, 800, document.getElementById('container'), false);
+//width, height, container, transparent
+let stage = new CanvasView(1200, 800, document.getElementById('container'), false);
 
 
 ```
@@ -89,11 +99,11 @@ tween(0, 300, 1000, 100, inOutBack, value => {
 
 ####IMAGES
 ```javascript
-  import {imageLoader} from 'baku/images';
+import {imageLoader} from 'baku/images';
 
-  imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
-    .then(img => document.body.appendChild(img))
-    .catch(err => console.log(err));
+imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
+  .then(img => document.body.appendChild(img))
+  .catch(err => console.log(err));
 ```
 
 ####LOADERS

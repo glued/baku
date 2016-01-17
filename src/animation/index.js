@@ -74,17 +74,50 @@ export class Tween{
 //STANDALONE TWEEN
 export function tween(startValue, endValue, duration, delay, ease, callback){
   return new Promise((resolve) => {
-      let temp = new Tween(startValue, endValue, duration, delay, ease);
+      const tw = new Tween(startValue, endValue, duration, delay, ease);
 
       function render(){
-          let pos = temp.ease(Date.now());
+          const pos = tw.ease(Date.now());
           callback(pos);
-          if(temp.easing === false){
+          if(tw.easing === false){
              resolve(pos);
              return;
           }
 
           requestAnimationFrame(render);
+      }
+
+      render();
+    });
+}
+
+export function multiTween(tweens, callback){
+  return new Promise((resolve) => {
+      let activeTweens = [];
+
+      for(let tw of tweens)
+        activeTweens.push(new Tween(...tw));
+
+      const len = activeTweens.length;
+
+      function render(){
+        const now = Date.now();
+        let rendering = false;
+        let values = [];
+
+        for(let i = 0; i < len; i++){
+          let tw = activeTweens[i];
+          values[i] = tw.ease(now);
+          if(tw.easing === true)
+            rendering = true;
+        }
+
+        if(rendering){
+          callback(values);
+          requestAnimationFrame(render);
+        }else{
+          resolve();
+        }
       }
 
       render();
