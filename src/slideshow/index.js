@@ -2,19 +2,9 @@ import {findParentLI, getChildIndex, createElem} from '../core';
 import {Lerp} from '../animation';
 import Slide from './slide';
 
-export default class Slideshow{
+class DOMSlideshow extends Slideshow{
   constructor(container, prefix = 'baku'){
-    this.container    = container;
-    this.slides       = [];
-    this.animator     = new Lerp(0, 0.12, 0.002);
-    this.currentIdx   = 0;
-    this.width        = 0;
-    this.max          = 0;
-    this.leftArrow    = null;
-    this.rightArrow   = null;
-    this.holderUL     = null;
-    this.timer        = null;
-    this.timeout      = 0;
+    super(container);
 
     //GENERATE SLIDES///////////////////////////////////////////
     let slideHolder   = container.querySelector(`.${prefix}-slides`);
@@ -29,7 +19,7 @@ export default class Slideshow{
       this.leftArrow = createElem('A');
       this.rightArrow = this.leftArrow.cloneNode();
 
-      this.leftArrow.className = `${prefix}-prev`;
+      this.leftArrow.className  = `${prefix}-prev`;
       this.rightArrow.className = `${prefix}-next`;
 
       this.leftArrow.addEventListener('click', () => this.prevSlide(), false);
@@ -39,54 +29,40 @@ export default class Slideshow{
       this.container.appendChild(this.rightArrow);
     }
 
-    //GENERATE PAGINATION OF data-pagination EXISTS/////////////////////
-    let hasPagination = this.container.getAttribute('data-pagination');
-    if(hasPagination){
-      this.holderUL = createElem('UL');
+      //GENERATE PAGINATION OF data-pagination EXISTS/////////////////////
+      let hasPagination = this.container.getAttribute('data-pagination');
+      if(hasPagination){
+        this.holderUL = createElem('UL');
 
-      let li = createElem('LI');
-      let clonedLi;
-      for(let i = 0; i < this.total; i++){
-        clonedLi = li.cloneNode();
-        if(i === 0) clonedLi.className = 'active';
-        this.holderUL.appendChild(clonedLi);
+        let li = createElem('LI');
+        let clonedLi;
+        for(let i = 0; i < this.total; i++){
+          clonedLi = li.cloneNode();
+          if(i === 0) clonedLi.className = 'active';
+          this.holderUL.appendChild(clonedLi);
       }
 
       this.holderUL.className = `${prefix}-pagination`;
       this.holderUL.addEventListener('click', e => this.paginationClickEvent(e), false);
       this.container.appendChild(this.holderUL);
 
+      this.arrowCheck();
+
+      //AUTOPLAY
+      let hasAutoplay = this.container.getAttribute('data-autoplay');
+      if(!hasAutoplay) return;
+      this.timeout = parseInt(hasAutoplay, 10) * 1000;
+      this.container.addEventListener('mousemove', () =>  this.autoPlay(), false);
+      this.autoPlay();
+
+      document.addEventListener('visibilitychange', () => {
+        if(document.hidden)
+          clearTimeout(this.timer);
+        else
+          this.autoPlay();
+      }, false);
+
     }
-
-    this.arrowCheck();
-
-    //AUTOPLAY
-    let hasAutoplay = this.container.getAttribute('data-autoplay');
-    if(!hasAutoplay) return;
-    this.timeout = parseInt(hasAutoplay, 10) * 1000;
-    this.container.addEventListener('mousemove', () =>  this.autoPlay(), false);
-    this.autoPlay();
-
-    document.addEventListener('visibilitychange', () => {
-      if(document.hidden)
-        clearTimeout(this.timer);
-      else
-        this.autoPlay();
-    }, false);
-  }
-
-  autoPlay(){
-    if(!this.timeout) return;
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-        this.nextSlide();
-    }, this.timeout);
-  }
-
-  arrowCheck(){
-    let current = Math.abs(this.currentIdx % this.total);
-    this.updatePagination(current);
-    this.autoPlay();
   }
 
   updatePagination(idx){
@@ -104,6 +80,39 @@ export default class Slideshow{
     if(this.currentIdx === idx) return;
     this.jumpToSlide(idx);
   }
+}
+
+export default class Slideshow{
+  constructor(container){
+    this.container    = container;
+    this.slides       = [];
+    this.animator     = new Lerp(0, 0.12, 0.002);
+    this.currentIdx   = 0;
+    this.width        = 0;
+    this.max          = 0;
+    this.leftArrow    = null;
+    this.rightArrow   = null;
+    this.holderUL     = null;
+    this.timer        = null;
+    this.timeout      = 0;
+
+  }
+
+  autoPlay(){
+    if(!this.timeout) return;
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+        this.nextSlide();
+    }, this.timeout);
+  }
+
+  arrowCheck(){
+    let current = Math.abs(this.currentIdx % this.total);
+    this.updatePagination(current);
+    this.autoPlay();
+  }
+
+  updatePagination(/*idx*/){}
 
   jumpToSlide(idx){
     this.currentIdx = idx;
@@ -148,8 +157,7 @@ export function activateAllSlideshows(prefix = 'baku'){
   let containers = document.querySelectorAll(`.${prefix}-slideshow`);
 
   for(let show of containers)
-    slideshows.push(new Slideshow(show));
-
+    slideshows.push(new DOMSlideshow(show, prefix));
     window.addEventListener('resize', ()=>{
       const width = window.innerWidth;
       for(let i = 0; i < slideshows.length; i++)
