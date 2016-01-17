@@ -22,15 +22,15 @@ class App extends BakuApp{
     }
 
     resizeEvent(width, height){
-      this.chapters.resize(width, height);
+      //handle resize
     }
 
     scrollEvent(scrollPos, height){
-      this.chapters.scroll(scrollPos, height);
+      //handle scroll
     }
 
-    update(){
-      this.chapters.update();
+    update(timeStamp){
+      //requestanimationframe
     }
 }
 
