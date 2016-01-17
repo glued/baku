@@ -1,4 +1,5 @@
 #Baku
+**under development, check back later**
 
 A collection of frontend ES6 components & utilities
 
@@ -37,11 +38,6 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 
 ```
 
-####ANIMATION
-```
-
-```
-
 ####CANVAS
 ```
 	import {CanvasView} from 'baku/canvas';
@@ -60,6 +56,3 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
     .then((img)=>document.body.appendChild(img))
     .catch((err)=>console.log(err));
 ```
-
-**under development, check back later**
-Baku | Japanese supernatural beings that devour dreams and nightmares. [wikipedia](https://en.wikipedia.org/wiki/Baku_(spirit))
