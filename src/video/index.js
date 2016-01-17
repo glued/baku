@@ -6,7 +6,7 @@
 // }
 
 export function resizeCover(videoWidth, videoHeight, containerWidth, containerHeight){
-  const containerAspectRatio  = containerWidth /containerHeight;
+  const containerAspectRatio  = containerWidth / containerHeight;
   const videoAspectRatio      = videoWidth / videoHeight;
 
   let newWidth  = 0;

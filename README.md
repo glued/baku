@@ -7,6 +7,7 @@ A collection of frontend ES6 components & utilities
 This is an ES6 only library and will not work with older JS code
 
 ##Usage
+`npm install baku --save`
 
 ####APP
 Create a new app and attach scroll/resize/render events
@@ -44,11 +45,11 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 ####CANVAS
 ```
 	import {CanvasView} from 'baku/canvas';
-	
+
 	//width, height, container, transparent
 	let stage = new CanvasView(1200, 800, document.getElementById('container'), false);
-	
-	
+
+
 ```
 
 ####IMAGES

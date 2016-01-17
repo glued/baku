@@ -18,3 +18,7 @@ export function findParentLI(target, count = 0){
     count++;
     return findParentLI(target.parentNode, count);
 }//AWW YISS RECURSION
+
+export function getChildIndex(child){
+    return [].indexOf.call(child.parentNode.children, child);
+}

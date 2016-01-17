@@ -34,7 +34,7 @@ export default class App{
   }
 
   activate(container){
-    init(this, container)
+    init(this, container);
   }
 }
 
