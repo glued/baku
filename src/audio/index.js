@@ -1,5 +1,16 @@
 import {Lerp} from '../animation';
 
+export function hasAudioAPI(){
+  let ctx;
+  try{
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+  }catch(e){
+    return false;
+  }
+
+  return !!ctx;
+}
+
 export class AudioEase{
   constructor(src, loop = false, startVolume = 1, speed = 0.08){
       this.audio        = new Audio(src);
