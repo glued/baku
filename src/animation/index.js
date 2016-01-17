@@ -114,8 +114,8 @@ export function multiTween(tweens, callback){
           values[i] = tw.ease(now);
         }
 
+        callback(values);
         if(rendering){
-          callback(values);
           requestAnimationFrame(render);
         }else{
           resolve();

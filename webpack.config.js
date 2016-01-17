@@ -6,7 +6,7 @@ var dirHtml = path.resolve(__dirname, 'demo');
 var dirBuild = path.resolve(__dirname, 'dist');
 
 module.exports = {
-    entry: path.resolve(dirJs, 'index.js'),
+    entry: ['babel-polyfill', path.resolve(dirJs, 'index.js')],
     preLoaders: [
       { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ },
       { test: /\.js$/, loader: 'jscs-loader', exclude: /node_modules/ },

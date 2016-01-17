@@ -36,9 +36,13 @@ export const has3dTransform  = (() => {
   return (has3d !== undefined && has3d !== '');
 })();
 
-export function transform(x, y, z){
-    if(has3dTransform === true)
-      return `translate3d(${x}px,${y}px,${z}px)`;
+export function transform(x, y, z){ //x = 0, y = 0, z = 0 DEFAULTS MAY SLOW DOWN PERFORMANCE
+    const xp = x || 0;
+    const yp = y || 0;
+    const zp = z || 0;
 
-    return `translate(${x}px,${y}px)`;
+    if(has3dTransform === true)
+      return `translate3d(${xp}px,${yp}px,${zp}px)`;
+
+    return `translate(${xp}px,${yp}px)`;
 }

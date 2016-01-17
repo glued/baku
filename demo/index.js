@@ -1,5 +1,6 @@
 import {imageLoader} from 'baku/images';
 import {tween, multiTween} from 'baku/animation';
+import {transform, transformPrefix} from 'baku/css/transforms';
 import {inOutBack} from 'baku/animation/ease';
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -8,8 +9,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     .then((img)=>{
         document.body.appendChild(img);
 
-        tween(0, 300, 1000, 10, inOutBack, value => {
-          img.style.transform = `translate3d(${value}px,0,0)`;
+        tween(0, 300, 1000, 2000, inOutBack, value => {
+          img.style[transformPrefix] = transform(value);
         }).then(()=>{
 
           let tweens = [
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           ];
 
           multiTween(tweens, values => {
-            img.style.transform = `translate3d(${values[0]}px,${values[1]}px,0)`;
+            img.style[transformPrefix] = transform(...values);
           }).then(()=> console.log('done'));
 
         });
