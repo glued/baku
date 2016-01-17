@@ -13,7 +13,7 @@ export class Component{
   update(/*timeStamp*/){}
 }
 
-export class App{
+export default class App{
   constructor(){
     this.components = [];
   }
@@ -33,10 +33,9 @@ export class App{
       this.components[i].update(timeStamp);
   }
 
-  start(container){
-    init(this, container);
+  activate(container){
+    init(this, container)
   }
-
 }
 
 function init(app, container){
