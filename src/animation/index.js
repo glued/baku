@@ -107,9 +107,11 @@ export function multiTween(tweens, callback){
 
         for(let i = 0; i < len; i++){
           let tw = activeTweens[i];
-          values[i] = tw.ease(now);
+
           if(tw.easing === true)
             rendering = true;
+
+          values[i] = tw.ease(now);
         }
 
         if(rendering){

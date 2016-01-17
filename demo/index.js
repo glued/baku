@@ -2,8 +2,6 @@ import {imageLoader} from 'baku/images';
 import {tween, multiTween} from 'baku/animation';
 import {inOutBack} from 'baku/animation/ease';
 
-//STANDALONE TWEEN
-
 document.addEventListener('DOMContentLoaded', ()=>{
 
   imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
