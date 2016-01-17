@@ -5,6 +5,12 @@ export function getElem(str, query = false){
     return document.getElementById(str);
 }
 
+export function createElem(elem, className){
+  let element = document.createElement(elem);
+  if(className) element.className = className;
+  return element;
+}
+
 export function findParentLI(target, count = 0){
     if(count > 5) return false; // MAX
     if(target instanceof HTMLLIElement) return target;
