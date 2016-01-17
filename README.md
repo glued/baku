@@ -16,7 +16,7 @@ I recommend using [babel](https://github.com/babel/babel) and [webpack](https://
 
 Create a new app and attach scroll/resize/render events
 
-```
+```javascript
 import BakuApp from 'baku';
 
 class App extends BakuApp{
@@ -40,8 +40,24 @@ class App extends BakuApp{
 document.addEventListener('DOMContentLoaded', new App().activate(), false);
 
 ```
+
 ####ANIMATION
 `baku/animation`
+
+```javascript
+
+import {tween} from 'baku/animation';
+import {inOutBack} from 'baku/animation/ease';
+
+//start, end, duration, delay, ease, render callback
+
+tween(0, 300, 1000, 100, inOutBack, value => {
+  someDiv.style.transform = `translate3d(${value}px,0,0)`;
+}).then(()=>{
+  console.log('animation complete');
+});
+
+```
 
 ####AUDIO
 `baku/audio`
@@ -49,7 +65,7 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 ####CANVAS
 `baku/canvas`
 
-```
+```javascript
 	import {CanvasView} from 'baku/canvas';
 
 	//width, height, container, transparent
@@ -71,12 +87,12 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 `baku/geometry`
 
 ####IMAGES
-```
+```javascript
   import {imageLoader} from 'baku/images';
 
   imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
-    .then((img)=>document.body.appendChild(img))
-    .catch((err)=>console.log(err));
+    .then(img => document.body.appendChild(img))
+    .catch(err => console.log(err));
 ```
 
 ####LOADERS
