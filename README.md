@@ -1,11 +1,12 @@
 #Baku
 **under development, check back later**
 
-A collection of frontend ES6 components & utilities
+A collection of frontend ES6 components & utilities, unlike projects like jQuery you only `import` what is needed.
 
 **IMPORTANT**
 
-This is an ES6 only library and will not work with older JS code
+This is a a ES6 only library and will not work with older JS code.
+I recommend using [babel](https://github.com/babel/babel) and [webpack](https://github.com/webpack/webpack)
 
 ##Usage
 `npm install baku --save`
