@@ -12,6 +12,8 @@ I recommend using [babel](https://github.com/babel/babel) and [webpack](https://
 `npm install baku --save`
 
 ####APP
+`baku`
+
 Create a new app and attach scroll/resize/render events
 
 ```
@@ -38,8 +40,15 @@ class App extends BakuApp{
 document.addEventListener('DOMContentLoaded', new App().activate(), false);
 
 ```
+####ANIMATION
+`baku/animation`
+
+####AUDIO
+`baku/audio`
 
 ####CANVAS
+`baku/canvas`
+
 ```
 	import {CanvasView} from 'baku/canvas';
 
@@ -49,6 +58,18 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
 
 ```
 
+####COLOR
+`baku/color`
+
+####CORE
+`baku/core`
+
+####CSS
+`baku/css`
+
+####GEOMETRY
+`baku/geometry`
+
 ####IMAGES
 ```
   import {imageLoader} from 'baku/images';
@@ -57,3 +78,33 @@ document.addEventListener('DOMContentLoaded', new App().activate(), false);
     .then((img)=>document.body.appendChild(img))
     .catch((err)=>console.log(err));
 ```
+
+####LOADERS
+`baku/loaders`
+
+####POLYFILLS
+`baku/polyfills`
+
+####RANDOM
+`baku/random`
+
+####ROUTER
+`baku/router`
+
+####SLIDESHOW
+`baku/slideshow`
+
+####SOCIAL
+`baku/social`
+
+####TOUCH
+`baku/touch`
+
+####URL
+`baku/url`
+
+####VIDEO
+`baku/video`
+
+####WINDOW
+`baku/window`
