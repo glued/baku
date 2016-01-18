@@ -10,7 +10,7 @@ export function attachFacebookShareDialog(element){
 }
 
 export function attachTwitterShareDialog(element, via){
-  via = `&via=${via}`;
+  if(via) via = `&via=${via}`;
   element.addEventListener('click', e => {
     e.preventDefault();
     openSocialShareDialog('https://twitter.com/intent/tweet?url=', via);
