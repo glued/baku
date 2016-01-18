@@ -3,10 +3,16 @@ function openSocialShareDialog(url, suffix = '', href = document.location.href){
 }
 
 export function attachFacebookShareDialog(element){
-  element.addEventListener('click', () => openSocialShareDialog('https://www.facebook.com/sharer/sharer.php?u='), false);
+  element.addEventListener('click', e => {
+    e.preventDefault();
+    openSocialShareDialog('https://www.facebook.com/sharer/sharer.php?u=');
+  }, false);
 }
 
 export function attachTwitterShareDialog(element, via){
   via = `&via=${via}`;
-  element.addEventListener('click', () => openSocialShareDialog('https://twitter.com/intent/tweet?url=', via), false);
+  element.addEventListener('click', e => {
+    e.preventDefault();
+    openSocialShareDialog('https://twitter.com/intent/tweet?url=', via);
+  }, false);
 }
