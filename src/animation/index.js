@@ -147,6 +147,7 @@ export class Lerp{
     }
 
     set pos(endPos){
+        if(this.endPos === endPos) return;
         this.endPos = endPos;
         this.easing = true;
     }
