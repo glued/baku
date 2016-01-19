@@ -51,6 +51,7 @@ function loop(timeStamp){
   if(_window.resize === true){
     const { width, height } = _window;
     _this.resizeEvent(width, height);
+    return;
   }else if(_window.scroll === true){
     const { scrollPos, height } = _window;
     _this.scrollEvent(scrollPos, height);

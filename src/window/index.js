@@ -20,6 +20,7 @@ export default class Window{
     this.width  = window.innerWidth;
     this.height = document.documentElement.clientHeight;
     this.resizing = false;
+    this.scrolling = true;
     return true;
   }
 
