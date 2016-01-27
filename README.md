@@ -1,6 +1,8 @@
 #Baku
 **under development, check back later**
 
+[![npm version](https://badge.fury.io/js/baku.svg)](https://badge.fury.io/js/baku)
+
 A collection of frontend ES6 components & utilities, unlike projects like jQuery you only `import` what is needed.
 
 **IMPORTANT**
