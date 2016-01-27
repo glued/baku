@@ -127,16 +127,21 @@ export function multiTween(tweens, callback){
 }
 
 export class Lerp{
-    constructor(initialValue, speed, threshold = 0.5){
+    constructor(initialValue, speed, threshold = 0.5, friction = 0){
         this.currentPos = initialValue;
+
         this.startPos   = initialValue;
         this.endPos     = initialValue;
         this.speed      = speed;
         this.threshold  = threshold;
         this.easing     = false;
+
+        this.easeIn     = speed;
+        this.friction   = friction;
     }
 
     finish(){
+        this.easeIn     = 0;
         this.easing     = false;
         this.currentPos = this.endPos;
     }
@@ -149,6 +154,12 @@ export class Lerp{
     set pos(endPos){
         if(this.endPos === endPos) return;
         this.endPos = endPos;
+
+        if(!this.easing)
+          this.easeIn = 0;
+        else
+          this.easeIn -= this.friction;
+
         this.easing = true;
     }
 
@@ -162,11 +173,18 @@ export class Lerp{
     get pos(){
         if(this.easing === false) return this.currentPos;
 
-        const endPos    = this.endPos;
-        const speed     = this.speed;
-        const threshold = this.threshold;
+        const { endPos, speed, threshold, friction } = this;
 
-        this.currentPos += (endPos - this.currentPos) * speed;
+        if(friction > 0){
+          if(this.easeIn < this.speed)
+            this.easeIn += friction;
+          else
+            this.easeIn = this.speed;
+
+          this.currentPos += (endPos - this.currentPos) * this.easeIn;
+        }else{
+          this.currentPos += (endPos - this.currentPos) * speed;
+        }
 
         const direction   = this.currentPos > endPos;
         const offset      = direction ? threshold : -threshold;
