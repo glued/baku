@@ -39,7 +39,7 @@ class App extends BakuApp{
     }
 }
 
-document.addEventListener('DOMContentLoaded', new App().activate(), false);
+document.addEventListener('DOMContentLoaded', () => new App().activate(), false);
 
 ```
 
