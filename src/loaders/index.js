@@ -2,9 +2,9 @@ export function xhr(src, method = 'GET', parse = true){
   return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.addEventListener('load', () => {
-            let status = xhr.status;
+            const {status, responseText} = xhr;
             if(status === 200 || status === 304)
-              resolve(parse ? JSON.parse(xhr.responseText) : xhr.responseText);
+              resolve(parse ? JSON.parse(responseText) : responseText);
             else
               reject('load_error');
         }, false);
