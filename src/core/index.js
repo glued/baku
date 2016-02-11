@@ -22,3 +22,9 @@ export function findParentLI(target, count = 0){
 export function getChildIndex(child){
     return [].indexOf.call(child.parentNode.children, child);
 }
+
+export class Container{
+  constructor(domId){
+    this.domElement = getElem(domId);
+  }
+}
