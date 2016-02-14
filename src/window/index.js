@@ -1,3 +1,5 @@
+export const hasScrollElement = 'scrollingElement' in document;
+
 export default class Window{
   constructor(container){
     this.resizing   = true;
@@ -11,8 +13,11 @@ export default class Window{
 
     if(container)
       this.container.addEventListener('scroll', () => this.scrolling = true, false);
-    else
+    else{
+      if(hasScrollElement) this.container = document.scrollingElement;
       window.addEventListener('scroll', () => this.scrolling = true, false);
+    }
+
   }
 
   get resize(){
