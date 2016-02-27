@@ -19,11 +19,11 @@ I recommend using [babel](https://github.com/babel/babel) and [webpack](https://
 Create a new app and attach scroll/resize/render events
 
 ```javascript
-import BakuApp from 'baku';
+import BakuApp from 'baku'
 
 class App extends BakuApp{
     constructor(){
-      super();
+      super()
     }
 
     resizeEvent(width, height){
@@ -39,7 +39,7 @@ class App extends BakuApp{
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => new App().activate(), false);
+document.addEventListener('DOMContentLoaded', () => new App().activate(), false)
 
 ```
 
@@ -48,27 +48,27 @@ document.addEventListener('DOMContentLoaded', () => new App().activate(), false)
 
 ```javascript
 
-import {tween, multiTween} from 'baku/animation';
-import {inOutBack} from 'baku/animation/ease';
+import {tween, multiTween} from 'baku/animation'
+import {inOutBack} from 'baku/animation/ease'
 
 //start, end, duration, delay, ease, render callback
 
 tween(0, 300, 1000, 100, inOutBack, value => {
   //animation value callback
-  someDiv.style.transform = `translate3d(${value}px,0,0)`;
+  someDiv.style.transform = `translate3d(${value}px,0,0)`
 }).then(()=>{
-  console.log('animation complete');
-});
+  console.log('animation complete')
+})
 
 //OR MULTIPLE values
 let tweens = [
   [300, 0, 1000, 10, inOutBack],
   [0, 100, 1000, 100, inOutBack]
-];
+]
 
 multiTween(tweens, values => {
-  img.style.transform = `translate3d(${values[0]}px,${values[1]}px,0)`;
-}).then(()=> console.log('done'));
+  img.style.transform = `translate3d(${values[0]}px,${values[1]}px,0)`
+}).then(()=> console.log('done'))
 
 ```
 
@@ -79,10 +79,10 @@ multiTween(tweens, values => {
 `baku/canvas`
 
 ```javascript
-import {CanvasView} from 'baku/canvas';
+import {CanvasView} from 'baku/canvas'
 
 //width, height, container, transparent
-let stage = new CanvasView(1200, 800, document.getElementById('container'), false);
+let stage = new CanvasView(1200, 800, document.getElementById('container'), false)
 
 
 ```
@@ -101,11 +101,11 @@ let stage = new CanvasView(1200, 800, document.getElementById('container'), fals
 
 ####IMAGES
 ```javascript
-import {imageLoader} from 'baku/images';
+import {imageLoader} from 'baku/images'
 
 imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
   .then(img => document.body.appendChild(img))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
 ```
 
 ####LOADERS
