@@ -1,4 +1,4 @@
-export const hasScrollElement = 'scrollingElement' in document;
+export const hasScrollElement = 'scrollingElement' in document
 
 export default class Window{
   constructor(container){
@@ -12,18 +12,12 @@ export default class Window{
     this.container = document.getElementById(container)
 
     if(container)
-<<<<<<< Updated upstream
-      this.container.addEventListener('scroll', () => this.scrolling = true, false);
+      this.container.addEventListener('scroll', () => this.scrolling = true, false)
     else{
-      if(hasScrollElement) this.container = document.scrollingElement;
-      window.addEventListener('scroll', () => this.scrolling = true, false);
+      if(hasScrollElement) this.container = document.scrollingElement
+      window.addEventListener('scroll', () => this.scrolling = true, false)
     }
 
-=======
-      this.container.addEventListener('scroll', () => this.scrolling = true, false)
-    else
-      window.addEventListener('scroll', () => this.scrolling = true, false)
->>>>>>> Stashed changes
   }
 
   get resize(){

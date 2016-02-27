@@ -105,7 +105,7 @@ export function multiTween(tweens, callback){
         let rendering = false
         let values = []
 
-        for(let i = 0 i < len i++){
+        for(let i = 0; i < len; i++){
           let tw = activeTweens[i]
 
           if(tw.easing === true)
