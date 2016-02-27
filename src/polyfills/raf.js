@@ -4,28 +4,28 @@
 // MIT license
 
 (function() {
-  const vendors = ['ms', 'moz', 'webkit', 'o'];
-  const af = 'AnimationFrame';
-  let lastTime = 0;
+  const vendors = ['ms', 'moz', 'webkit', 'o']
+  const af = 'AnimationFrame'
+  let lastTime = 0
 
   for(let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-      const vendor = vendors[x];
-      window.requestAnimationFrame  = window[`${vendor}Request${af}`];
-      window.cancelAnimationFrame   = window[`${vendor}Cancel${af}`] || window[`${vendor}CancelRequest${af}`];
+      const vendor = vendors[x]
+      window.requestAnimationFrame  = window[`${vendor}Request${af}`]
+      window.cancelAnimationFrame   = window[`${vendor}Cancel${af}`] || window[`${vendor}CancelRequest${af}`]
   }
 
   if(!window.requestAnimationFrame){
     window.requestAnimationFrame = function(callback) {
-        const currTime    = Date.now();
-        const timeToCall  = Math.max(0, 16 - (currTime - lastTime));
-        const id          = window.setTimeout(() => callback(currTime + timeToCall), timeToCall);
+        const currTime    = Date.now()
+        const timeToCall  = Math.max(0, 16 - (currTime - lastTime))
+        const id          = window.setTimeout(() => callback(currTime + timeToCall), timeToCall)
 
-        lastTime = currTime + timeToCall;
-        return id;
-    };
+        lastTime = currTime + timeToCall
+        return id
+    }
   }
 
   if(!window.cancelAnimationFrame)
-    window.cancelAnimationFrame = function(id) { clearTimeout(id); };
+    window.cancelAnimationFrame = function(id) { clearTimeout(id) }
 
-}());
+}())

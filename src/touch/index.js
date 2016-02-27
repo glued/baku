@@ -18,4 +18,4 @@ export const TOUCH_EVENTS = {
     CHANGE: 'MSGestureChange',
     END: 'MSGestureEnd'
   }
-};
+}

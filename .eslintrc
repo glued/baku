@@ -5,6 +5,7 @@
   ],
   "rules": {
     "strict": 0,
+    "semi": [2, "never"],
     "flow-vars/define-flow-type": 1,
     "no-unused-vars":[2, {"vars": "local"}],
     "flow-vars/use-flow-type": 1,

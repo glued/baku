@@ -1,6 +1,10 @@
 {
   "name": "baku",
+<<<<<<< Updated upstream
   "version": "0.0.17",
+=======
+  "version": "0.0.14",
+>>>>>>> Stashed changes
   "description": "A collection of frontend ES6 components & utilities",
   "author": "Richard Worsfold",
   "license": "MIT",
