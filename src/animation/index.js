@@ -78,10 +78,9 @@ export function tween(startValue, endValue, duration, delay, ease, callback){
       function render(now){
             const pos = tw.ease(now)
             callback(pos)
-            if(tw.easing === false){
-               resolve(pos)
-               return
-            }
+            if(tw.easing === false)
+               return resolve(pos)
+
           requestAnimationFrame(render)
       }
 

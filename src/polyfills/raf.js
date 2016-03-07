@@ -3,7 +3,28 @@
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
 
-(function() {
+(function () {
+
+  if ('performance' in window == false)
+      window.performance = {}
+
+  Date.now = (Date.now || function () {
+    return new Date().getTime()
+  })
+
+  if ('now' in window.performance == false){
+    let nowOffset = Date.now()
+
+    if(performance.timing && performance.timing.navigationStart)
+      nowOffset = performance.timing.navigationStart
+
+    window.performance.now = () => Date.now() - nowOffset
+  }
+
+})()
+
+(function () {
+
   const vendors = ['ms', 'moz', 'webkit', 'o']
   const af = 'AnimationFrame'
   let lastTime = 0
@@ -15,7 +36,7 @@
   }
 
   if(!window.requestAnimationFrame){
-    window.requestAnimationFrame = function(callback) {
+    window.requestAnimationFrame = callback =>{
         const currTime    = Date.now()
         const timeToCall  = Math.max(0, 16 - (currTime - lastTime))
         const id          = window.setTimeout(() => callback(currTime + timeToCall), timeToCall)
@@ -26,6 +47,6 @@
   }
 
   if(!window.cancelAnimationFrame)
-    window.cancelAnimationFrame = function(id) { clearTimeout(id) }
+    window.cancelAnimationFrame = id => clearTimeout(id)
 
 }())
