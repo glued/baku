@@ -1,16 +1,19 @@
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+// Modifed by Richard Worsfold for ES6
 // MIT license
+{
 
-(function () {
+  const vendors = ['ms', 'moz', 'webkit', 'o']
+  const af = 'AnimationFrame'
+  let lastTime = 0
 
-  if ('performance' in window == false)
+  if('performance' in window == false)
       window.performance = {}
 
-  Date.now = (Date.now || function () {
-    return new Date().getTime()
-  })
+  if(!Date.now)
+    Date.now = () => new Date().getTime()
 
   if ('now' in window.performance == false){
     let nowOffset = Date.now()
@@ -20,14 +23,6 @@
 
     window.performance.now = () => Date.now() - nowOffset
   }
-
-})()
-
-(function () {
-
-  const vendors = ['ms', 'moz', 'webkit', 'o']
-  const af = 'AnimationFrame'
-  let lastTime = 0
 
   for(let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
       const vendor = vendors[x]
@@ -49,4 +44,4 @@
   if(!window.cancelAnimationFrame)
     window.cancelAnimationFrame = id => clearTimeout(id)
 
-}())
+}
