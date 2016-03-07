@@ -76,15 +76,16 @@ export function tween(startValue, endValue, duration, delay, ease, callback){
   return new Promise(resolve => {
       const tw = new Tween(startValue, endValue, duration, delay, ease)
       function render(now){
-          const pos = tw.ease(now)
-          callback(pos)
-          if(tw.easing === false){
-             resolve(pos)
-             return
-          }
+            const pos = tw.ease(now)
+            callback(pos)
+            if(tw.easing === false){
+               resolve(pos)
+               return
+            }
           requestAnimationFrame(render)
       }
-      render()
+
+      render(performance.now())
     })
 }
 
@@ -98,6 +99,7 @@ export function multiTween(tweens, callback){
       const len = activeTweens.length
 
       function render(now){
+        // const now = Date.now()
         let rendering = false
         let values = []
 
@@ -111,14 +113,14 @@ export function multiTween(tweens, callback){
         }
 
         callback(values)
-        if(rendering){
+
+        if(rendering === true)
           requestAnimationFrame(render)
-        }else{
+        else
           resolve()
-        }
       }
 
-      render()
+      render(performance.now())
     })
 }
 

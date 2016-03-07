@@ -21,7 +21,6 @@
   "globals":{
     "PROD_ENV":true,
     "WebFont":true,
-    "stats":true
   },
   "env": {
     "browser": true,
