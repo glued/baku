@@ -42,7 +42,7 @@ function init(app, container){
   if(_this) return
   _window = new Window(container)
   _this = app
-  loop()
+  requestAnimationFrame(loop)
 }
 
 function loop(timeStamp){

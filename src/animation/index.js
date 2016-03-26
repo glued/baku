@@ -84,7 +84,7 @@ export function tween(startValue, endValue, duration, delay, ease, callback){
           requestAnimationFrame(render)
       }
 
-      render(performance.now())
+      requestAnimationFrame(render)
     })
 }
 
@@ -118,8 +118,7 @@ export function multiTween(tweens, callback){
         else
           resolve()
       }
-
-      render(performance.now())
+      requestAnimationFrame(render)
     })
 }
 
