@@ -24,14 +24,14 @@
     window.performance.now = () => Date.now() - nowOffset
   }
 
-  for(let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-      const vendor = vendors[x]
+  for(let i = 0; i < vendors.length && !window.requestAnimationFrame; i++) {
+      const vendor = vendors[i]
       window.requestAnimationFrame  = window[`${vendor}Request${af}`]
       window.cancelAnimationFrame   = window[`${vendor}Cancel${af}`] || window[`${vendor}CancelRequest${af}`]
   }
 
   if(!window.requestAnimationFrame){
-    window.requestAnimationFrame = callback =>{
+    window.requestAnimationFrame = callback => {
         const currTime    = Date.now()
         const timeToCall  = Math.max(0, 16 - (currTime - lastTime))
         const id          = window.setTimeout(() => callback(currTime + timeToCall), timeToCall)

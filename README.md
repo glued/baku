@@ -1,5 +1,5 @@
 # Baku
-**under development, check back later**
+**alpha**
 
 [![npm version](https://badge.fury.io/js/baku.svg)](https://badge.fury.io/js/baku)
 
@@ -147,7 +147,11 @@ let createdElem = createElem('LI', 'right') //create an element and apply classn
 import { checkCSS } from 'baku/css'
 //check if browser supports css properties
 let hasObjectFit = checkCSS('object-fit', 'contain')
-
+```
+`baku/css`
+```javascript
+import { transform, has3dTransform, transformPrefix } from 'baku/transforms'
+  someDiv.style[transformPrefix] = transform(x, y, z)
 ```
 #### GEOMETRY
 `baku/geometry`
@@ -197,6 +201,13 @@ scriptLoader('https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.js')
     // do something
   })
 ```
+#### DATE STRING ARRAYS
+`baku/dates`
+
+* MONTHS_LNG = 'January', 'February' ...
+* MONTHS_SHRT = 'Jan', 'Feb' ...
+* DAYS_LNG =  'Sunday', 'Monday'...
+* DAYS_SHRT = 'Sun', 'Mon' ...
 
 #### UTILS
 `baku/utils`

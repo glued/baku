@@ -1,7 +1,7 @@
-import {linear} from './ease'
+import ease from './ease'
 
 export class Tween{
-  constructor(startPos = 0, endPos = 0, duration = 0, delay = 0, easingEquation = linear){
+  constructor(startPos = 0, endPos = 0, duration = 0, delay = 0, easingEquation = ease.linear){
     this.paused     = false
     this.startPos   = startPos
     this.endPos     = endPos
