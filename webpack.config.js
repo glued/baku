@@ -1,12 +1,22 @@
-var path = require('path');
-var webpack = require('webpack');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var dirJs = path.resolve(__dirname, 'demo');
-var dirHtml = path.resolve(__dirname, 'demo');
-var dirBuild = path.resolve(__dirname, 'dist');
+/*eslint-env node */
+'use strict'
+const webpack = require('webpack')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const dirJs = path.resolve(__dirname, 'demo')
+const dirHtml = path.resolve(__dirname, 'demo')
+const dirBuild = path.resolve(__dirname, 'dist')
 
 module.exports = {
-    entry: ['babel-polyfill', path.resolve(dirJs, 'index.js')],
+    entry: [
+      'babel-polyfill',
+      path.resolve(dirJs, 'index.js')
+    ],
+    resolve: {
+      alias:{
+        baku: path.resolve(__dirname, 'src')
+      },
+    },
     preLoaders: [
       { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ },
       { test: /\.js$/, loader: 'jscs-loader', exclude: /node_modules/ },
@@ -21,6 +31,7 @@ module.exports = {
     module: {
         loaders: [
             {
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 test: /\.js$/,
             }
@@ -32,4 +43,4 @@ module.exports = {
     ],
     stats: { colors: true },
     devtool: 'source-map',
-};
+}
