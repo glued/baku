@@ -76,12 +76,17 @@ multiTween(tweens, values => {
 `baku/animation/ease`
 
 * linear
+* inQuad
+* outQuad
+* inOutQuad
 * inBack
 * outBack
 * inOutBack
 * inCube
 * outCube
 * inOutCube
+* inExpo
+* outExpo
 * inOutExpo
 
 `baku/animation/lerp`
