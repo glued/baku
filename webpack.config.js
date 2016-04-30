@@ -25,9 +25,6 @@ module.exports = {
         path: dirBuild,
         filename: 'bundle.js'
     },
-    devServer: {
-        contentBase: dirBuild,
-    },
     module: {
         loaders: [
             {
@@ -36,6 +33,11 @@ module.exports = {
                 test: /\.js$/,
             }
         ]
+    },
+    devServer: {
+        port: 9000,
+        host: 'localhost',
+        outputPath: dirBuild
     },
     plugins: [
         new CopyWebpackPlugin([{ from: dirHtml }]),
