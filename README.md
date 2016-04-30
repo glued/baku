@@ -53,16 +53,9 @@ tweens automatically use the requestanimationframe polyfill
 import { tween, multiTween } from 'baku/animation'
 import ease from 'baku/animation/ease'
 
-//start, end, duration, delay, ease, render callback, start callback
-tween(0, 300, 1000, 100, ease.inOutBack, value => {
-    //animation value callback
-    someDiv.style.transform = `translate3d(${value}px,0,0)`
-  },
-  () => {
-    console.log('animation started') //optional
-  }).then(()=>{
-    console.log('animation complete')
-})
+//start, end, duration, delay, ease, render callback, start callback (optional)
+tween(0, 300, 1000, 100, ease.inOutBack, value => someDiv.style.transform = `translate3d(${value}px,0,0)`)
+  .then(() => console.log('animation complete'))
 
 //OR MULTIPLE values
 let tweens = [
