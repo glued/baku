@@ -4,7 +4,9 @@ export class CanvasView{
     this.ctx            = this.canvas.getContext('2d', { alpha: alpha })
     this.canvas.width   = width
     this.canvas.height  = height
-    container.appendChild(this.canvas)
+
+    if(container)
+      container.appendChild(this.canvas)
   }
 }
 

@@ -1,5 +1,5 @@
-import {findParentLI, getChildIndex, createElem} from '../core'
-import {Lerp} from '../animation'
+import { findParentLI, getChildIndex, createElem } from '../core'
+import { Lerp } from '../animation'
 import Slide from './slide'
 
 class DOMSlideshow extends Slideshow{

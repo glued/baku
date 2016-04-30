@@ -1,4 +1,4 @@
-import {supportsCSS} from './'
+import { supportsCSS } from './'
 
 export const transformPrefix = (() => {
   const prefixes = ['Webkit', 'transform', 'ms', 'Moz', 'O']

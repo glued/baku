@@ -1,4 +1,4 @@
-import {Lerp} from '../animation'
+import { Lerp } from '../animation'
 
 export function hasAudioAPI(){
   let ctx

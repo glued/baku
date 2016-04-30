@@ -1,4 +1,4 @@
-import {transformPrefix, transform} from '../css/transforms'
+import { transformPrefix, transform } from '../css/transforms'
 
 export default class Slide{
   constructor(element, i){

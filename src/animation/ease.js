@@ -1,46 +1,51 @@
 // easing functions from "Tween.js" / Robert Penner modified for ES6
 //createjs.com/tweenjs
+const SPEED_BACK = 1.70158
+const SPEED_IOBACK = 2.5949095
 
-export function linear(n){
-  return n
-}
+export default{
+  linear:n => n,
 
-export function inBack(n){
-  const s = 1.70158
-  return n * n * ((s + 1) * n - s)
-}
+  inQuad:n => n * n,
 
-export function outBack(n){
-  const s = 1.70158
-  return --n * n * ((s + 1) * n + s) + 1
-}
+  outQuad:n => n * (2 - n),
 
-export function inOutBack(n){
-  const s = 1.70158 * 1.525
-  const s1 = s + 1
-  n *= 2
-  if(n < 1) return 0.5 * (n * n * (s1 * n - s))
-  n -= 2
-  return 0.5 * (n * n * (s1 * n + s) + 2)
-}
+  inOutQuad: n => {
+    if((n *= 2) < 1) return 0.5 * n * n
+    return -0.5 * (--n * (n - 2) - 1)
+  },
 
-export function inCube(n){
-  return n * n * n
-}
+  inBack:n => n * n * ((SPEED_BACK + 1) * n - SPEED_BACK),
 
-export function outCube(n){
-  return --n * n * n + 1
-}
+  outBack:n => --n * n * ((SPEED_BACK + 1) * n + SPEED_BACK) + 1,
 
-export function inOutCube(n){
-  n *= 2
-  if (n < 1) return 0.5 * n * n * n
-  return 0.5 * ((n -= 2) * n * n + 2)
-}
+  inOutBack:n => {
+    const s = SPEED_IOBACK
+    const s1 = s + 1
+    n *= 2
+    if(n < 1) return 0.5 * (n * n * (s1 * n - s))
+    n -= 2
+    return 0.5 * (n * n * (s1 * n + s) + 2)
+  },
 
-export function inOutExpo(n){
-  if(n === 0) return 0
-  if(n === 1) return 1
-  if((n *= 2) < 1) return 0.5 * Math.pow(1024, n - 1)
-  return 0.5 * (-Math.pow(2, -10 * (n - 1)) + 2)
+  inCube: n => n * n * n,
+
+  outCube: n => --n * n * n + 1,
+
+  inOutCube: n => {
+    n *= 2
+    if (n < 1) return 0.5 * n * n * n
+    return 0.5 * ((n -= 2) * n * n + 2)
+  },
+
+  inExpo: n => n === 0 ? 0 : Math.pow(1024, n - 1),
+
+  outExpo: n => n === 1 ? 1 : 1 - Math.pow(2, -10 * n),
+
+  inOutExpo: n => {
+    if(n === 0) return 0
+    if(n === 1) return 1
+    if((n *= 2) < 1) return 0.5 * Math.pow(1024, n - 1)
+    return 0.5 * (-Math.pow(2, -10 * (n - 1)) + 2)
+  }
 }
