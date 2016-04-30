@@ -15,15 +15,9 @@ export default{
     return -0.5 * (--n * (n - 2) - 1)
   },
 
-  inBack:n => {
-    const s = SPEED_BACK
-    return n * n * ((s + 1) * n - s)
-  },
+  inBack:n => n * n * ((SPEED_BACK + 1) * n - SPEED_BACK),
 
-  outBack:n => {
-    const s = SPEED_BACK
-    return --n * n * ((s + 1) * n + s) + 1
-  },
+  outBack:n => --n * n * ((SPEED_BACK + 1) * n + SPEED_BACK) + 1,
 
   inOutBack:n => {
     const s = SPEED_IOBACK
