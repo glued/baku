@@ -57,7 +57,7 @@ import ease from 'baku/animation/ease'
 tween(0, 300, 1000, 100, ease.inOutBack, value => someDiv.style.transform = `translate3d(${value}px,0,0)`)
   .then(() => console.log('animation complete'))
 
-//OR MULTIPLE values
+//tween multiple values
 let tweens = [
   [300, 0, 1000, 10, ease.inOutBack],
   [0, 100, 1000, 100, ease.inOutBack]
@@ -219,7 +219,7 @@ import { randomRangeInt, clamp } from 'baku/utils'
 `baku/video`
 ```javascript
 import { canAutoplay } from 'baku/video'
-//autoplay detection IE Mobile video
+//autoplay detection, mobile video for example
 ```
 
 #### SOCIAL
