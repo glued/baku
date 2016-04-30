@@ -205,7 +205,7 @@ scriptLoader('https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.js')
   })
 ```
 
-#### MATH
+#### UTILS
 `baku/utils`
 ```javascript
 import { randomRangeInt, clamp } from 'baku/utils'
