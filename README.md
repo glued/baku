@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => new App().activate(), false)
 #### ANIMATION
 `baku/animation`
 
+tweens automatically use the requestanimationframe polyfill
+
 ```javascript
 
 import { tween, multiTween } from 'baku/animation'
@@ -154,44 +156,80 @@ import { checkCSS } from 'baku/css'
 let hasObjectFit = checkCSS('object-fit', 'contain')
 
 ```
-####GEOMETRY
+#### GEOMETRY
 `baku/geometry`
-
-####IMAGES
 ```javascript
-import {imageLoader} from 'baku/images'
+import { Point, toRadians, Rectangle, PI, PI2 } from 'baku/geometry'
+
+// PI & PI2 smaller than Math.PI for faster calculations
+
+let rad = toRadians(25) //convert degrees to radians
+let pt = new Point(12, 12) //x, y
+
+Point.dist(ptA, ptB)
+Point.approxDist(ptA, ptB)
+
+let rectangle   = new Rectangle(12, 15, 200, 50) //x, y, width, height
+let rightEdge   = rectangle.right
+let bottomEdge  = rectangle.bottom
+let topEdge     = rectangle.top
+
+```
+#### IMAGES
+```javascript
+import { imageLoader } from 'baku/images'
 
 imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
   .then(img => document.body.appendChild(img))
   .catch(err => console.log(err))
 ```
 
-####LOADERS
+#### LOADERS
 `baku/loaders`
+```javascript
+import { xhr, scriptLoader } from 'baku/loaders'
 
-####POLYFILLS
-`baku/polyfills`
+xhr('http://api.somesite.com/test') //url, method (GET, POST, ETC), parse
+  .then(results => {
+    //do something with results
+  })
+  .catch(err => {
+    console.log('unable to load')
+  })
 
-####RANDOM
-`baku/random`
+//load a js file async
+//a use case could be detect if WEBGL is supported, if so load three.js
+scriptLoader('https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.js')
+  .then(()=>{
+    // do something
+  })
+```
 
-####ROUTER
-`baku/router`
+#### MATH
+`baku/utils`
+```javascript
+import { randomRangeInt, clamp } from 'baku/utils'
+```
 
-####SLIDESHOW
-`baku/slideshow`
+#### VIDEO
+`baku/video`
+```javascript
+import { canAutoplay } from 'baku/video'
+//autoplay detection IE Mobile video
+```
 
-####SOCIAL
+#### SOCIAL
 `baku/social`
-
-####TOUCH
+```javascript
+import { attachFbShareDialog, attachTwShareDialog } from 'baku/social'
+```
+#### TOUCH
 `baku/touch`
 
-####URL
+#### URL
 `baku/url`
 
-####VIDEO
-`baku/video`
 
-####WINDOW
+
+#### WINDOW
 `baku/window`
