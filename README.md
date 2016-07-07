@@ -1,5 +1,5 @@
 # Baku
-**alpha**
+**alpha** personal project 
 
 [![npm version](https://badge.fury.io/js/baku.svg)](https://badge.fury.io/js/baku)
 
@@ -9,6 +9,16 @@ A collection of frontend ES6 components & utilities, unlike projects like jQuery
 
 This is a a ES6 only library and will not work with older JS code.
 I recommend using [babel](https://github.com/babel/babel) and [webpack](https://github.com/webpack/webpack)
+when using webpack you'll need to use include via the babel-loader:
+```javascript
+loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                include: [
+                    path.resolve(__dirname, 'node_modules/baku')
+...
+```
 
 ## Usage
 `npm install baku --save`
@@ -54,8 +64,15 @@ import { tween, multiTween } from 'baku/animation'
 import ease from 'baku/animation/ease'
 
 //start, end, duration, delay, ease, render callback, start callback (optional)
-tween(0, 300, 1000, 100, ease.inOutBack, value => someDiv.style.transform = `translate3d(${value}px,0,0)`)
-  .then(() => console.log('animation complete'))
+tween(0, 300, 1000, 100, ease.inOutBack, value => {
+  someDiv.style.transform = `translate3d(${value}px,0,0)`
+}, () => {
+  console.log('started')
+}).then(() => {
+  console.log('animation complete')
+})
+
+//Since this returns a promise, you can use Promise.All with a group of tweens or
 
 //tween multiple values
 let tweens = [
@@ -184,14 +201,24 @@ imageLoader('https://c2.staticflickr.com/6/5759/24053243841_a870243909.jpg')
 #### LOADERS
 `baku/loaders`
 ```javascript
-import { xhr, scriptLoader } from 'baku/loaders'
+import { xhr, scriptLoader, HTTP } from 'baku/loaders'
 
-xhr('http://api.somesite.com/test') //url, method (GET, POST, ETC), parse
+xhr('http://api.somesite.com/test') //url, params = {}, method = GET, headers = [['Content-Type', 'application/json']]
   .then(results => {
     //do something with results
   })
   .catch(err => {
-    console.log('unable to load')
+    console.log(err, 'unable to load')
+  })
+
+const headers = [
+  ['Content-Type', 'application/json'],
+  ['Referer', 'http://www.github.com']
+]
+
+xhr('http://api.somesite.com/test', HTTP.post, { foo:'bar' }, headers)
+  .then( results => {
+    //do something with results
   })
 
 //load a js file async

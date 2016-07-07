@@ -1,16 +1,28 @@
-export function xhr(src, method = 'GET', parse = true){
+export const HTTP = {
+  get   :'GET',
+  post  :'POST',
+  put   :'PUT',
+  delete:'DELETE'
+}
+
+export function xhr(src, params = {}, method = HTTP.get, headers){
   return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest()
+        const xhr = new XMLHttpRequest()
+
         xhr.addEventListener('load', () => {
             const { status, responseText } = xhr
             if(status === 200 || status === 304)
-              resolve(parse ? JSON.parse(responseText) : responseText)
+              resolve(responseText)
             else
               reject('load_error')
         }, false)
 
         xhr.open(method, src, true)
-        xhr.send()
+
+        for(let header of headers)
+          xhr.setRequestHeader(...header)
+
+        xhr.send(JSON.stringify(params))
     })
 }
 
