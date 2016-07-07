@@ -5,7 +5,7 @@ export const HTTP = {
   delete:'DELETE'
 }
 
-export function xhr(src, params = {}, method = HTTP.get, headers){
+export function xhr(src, params = {}, method = HTTP.get, headers = []){
   return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
 
