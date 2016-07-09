@@ -1,5 +1,5 @@
 # Baku
-**alpha** personal project 
+**alpha** personal project
 
 [![npm version](https://badge.fury.io/js/baku.svg)](https://badge.fury.io/js/baku)
 
@@ -8,8 +8,8 @@ A collection of frontend ES6 components & utilities, unlike projects like jQuery
 **IMPORTANT**
 
 This is a a ES6 only library and will not work with older JS code.
-I recommend using [babel](https://github.com/babel/babel) and [webpack](https://github.com/webpack/webpack)
-when using webpack you'll need to use include via the babel-loader:
+I recommend using [babel](https://github.com/babel/babel) and [webpack](https://github.com/webpack/webpack).
+When using webpack you'll need to use include via the babel-loader:
 ```javascript
 loaders: [
             {
